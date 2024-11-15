@@ -5,6 +5,7 @@ import cors from "cors";
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
 
+
 import { registerValidation, loginValidation } from "./validations.js";
 import { validationResult } from "express-validator";
 
@@ -16,7 +17,7 @@ import { UserController, EntriesController, CalendarController } from "./control
 import data2 from  "./foodList.json"  with { type: "json" };
 import data1 from "./food.json" with { type: "json" }; 
   
-  
+
 
 mongoose
   .connect(
@@ -34,7 +35,18 @@ app.use(express.json());
 app.use(cors());
 app.use("/uploads", express.static("uploads"));
 
-
+  // app.get("/*", function(req,res){
+  //   res.sendFile(
+  //     path.join(__dirname,"../client/build/index.html"),
+  //     function(err){
+  //       if(err){
+  //         res.status(500).send(err);
+  //       }
+  //     }
+  //   )
+  // })
+  
+  // app.use(express.static(path.join(__dirname,'client/build')))
 
 app.post(
   "/auth/login",
