@@ -9,11 +9,15 @@ import { validationResult } from "express-validator";
 
 import { handleValidationErrors, checkAuth } from "./index1.js";
 
-import { UserController, EntriesController, CalendarController } from "./index2.js";
+import { UserController, EntriesController, CalendarController, WorkController } from "./index2.js";
 
 
 import data2 from  "./foodList.json"  with { type: "json" };
 import data1 from "./food.json" with { type: "json" }; 
+import data3 from "./food_ru.json" with { type: "json" }; 
+import data4 from "./foodList_ru.json" with { type: "json" }; 
+
+
   
 
 
@@ -49,10 +53,18 @@ app.post("/mytotals/add", EntriesController.addFoodEntry);
 app.delete("/mytotals/:id", EntriesController.deleteFoodEntry); 
 
 app.get("/calendar/:user_id", CalendarController.getAllSortedById);
+
+app.get("/calendar/:user_idAndDate", CalendarController.getAllSortedByIdAndDate);
+
 app.post("/calendar/:date", CalendarController.update);
 app.post("/calendar/add", CalendarController.addDateEntry);
 app.delete("/calendar/:date", CalendarController.deleteFoodEntry); 
  
+app.get("/work/:user_id", WorkController.getAllSortedById);
+app.post("/work/:date", WorkController.update);
+app.post("/work/add", WorkController.addWorkEntry); 
+ 
+
  
 app.get("/food",(request,response)=>{
   response.json(data1)
@@ -60,11 +72,20 @@ app.get("/food",(request,response)=>{
 app.get("/food2",(request,response)=>{
   response.json(data2)
 });
+
+app.get("/food3",(request,response)=>{
+  response.json(data3)
+});
+app.get("/food4",(request,response)=>{
+  response.json(data4)
+});
  
 app.post("/api/json",(request,response)=>{
   // response.json(data);
   // console.log ((request.body))
   fs.writeFileSync('./foodList.json', JSON.stringify(request.body))
+  fs.writeFileSync('./foodList_ru.json', JSON.stringify(request.body))
+
   // console.log(response)
 });  
  

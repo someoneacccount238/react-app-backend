@@ -87,7 +87,6 @@ export const login = async (req, res) => {
 };
 
 export const getMe = async (req, res) => {
-  try {
     const user = await User.findById(req.userId);
 
     if (!user) {
@@ -99,10 +98,4 @@ export const getMe = async (req, res) => {
     const { passwordHash, ...userData } = user._doc;
 
     res.json(userData);
-  } catch (err) {
-    // console.log(err);
-    res.status(500).json({
-      message: "Нет доступа",
-    });
   }
-};
