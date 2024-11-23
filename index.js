@@ -65,7 +65,7 @@ app.post("/work/:date", WorkController.update);
 app.post("/work/add", WorkController.addWorkEntry); 
  
 
- 
+ //хранить новые значения в localStorage
 app.get("/food",(request,response)=>{
   response.json(data1)
 });
